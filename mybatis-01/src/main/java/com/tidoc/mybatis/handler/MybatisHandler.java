@@ -20,4 +20,5 @@ package com.tidoc.mybatis.handler;
  * <pre>
  */
 public class MybatisHandler {
+
 }
