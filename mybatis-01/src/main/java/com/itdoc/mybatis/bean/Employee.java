@@ -1,4 +1,4 @@
-package com.tidoc.mybatis.bean;
+package com.itdoc.mybatis.bean;
 /**
  * @filename: Employee.java
  * @author: Wang Chinda

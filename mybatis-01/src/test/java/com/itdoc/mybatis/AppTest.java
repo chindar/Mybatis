@@ -1,4 +1,4 @@
-package com.tidoc.mybatis;
+package com.itdoc.mybatis;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
