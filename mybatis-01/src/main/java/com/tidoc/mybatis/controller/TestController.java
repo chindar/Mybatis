@@ -15,9 +15,10 @@ package com.tidoc.mybatis.controller;
  *
  * <pre>
  *
- *
+ * 测试 Controller
  *
  * <pre>
  */
 public class TestController {
+
 }
