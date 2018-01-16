@@ -13,10 +13,10 @@
      -->
     <select id="selectEmp" resultType="com.itdoc.mybatis.bean.Employee">
 		SELECT
-          id
-          , last_name
-          , email
-          , gender
+          id          AS  id
+          , last_name AS lastName
+          , email     AS email
+          , gender    AS gender
         FROM employee
         WHERE id = #{id};
 	</select>
