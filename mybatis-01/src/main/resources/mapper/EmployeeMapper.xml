@@ -2,16 +2,27 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itdoc.mybatis.EmployeeMapper">
+<!--
+    对应MybatisHandler实现
+    <mapper namespace="com.itdoc.mybatis.EmployeeMapper">
+-->
+<mapper namespace="com.itdoc.mybatis.dao.EmployeeMapper">
     <!--
-    namespace:名称空间;指定为接口的全类名
+    namespace:命名空间;指定为接口的全类名
     id：唯一标识
     resultType：返回值类型
     #{id}：从传递过来的参数中取出id值
 
     public Employee getEmpById(Integer id);
      -->
-    <select id="selectEmp" resultType="com.itdoc.mybatis.bean.Employee">
+    <!--
+        id属性值对应Mybatishandler中openSession.selectOne("com.itdoc.mybatis.EmployeeMapper.selectEmp", 1)第一个参数
+        <select id="selectEmp" resultType="com.itdoc.mybatis.bean.Employee">
+    -->
+    <!--
+        id属性值对应EmployeeMapper接口中getEmpById行数名称
+     -->
+    <select id="getEmpById" resultType="com.itdoc.mybatis.bean.Employee">
 		SELECT
           id          AS  id
           , last_name AS lastName
