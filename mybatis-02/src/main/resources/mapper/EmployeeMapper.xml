@@ -42,6 +42,4 @@
         WHERE 1 = 1
               AND id = #{id}
     </delete>
-
-
 </mapper>
