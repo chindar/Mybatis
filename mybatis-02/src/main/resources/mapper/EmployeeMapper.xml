@@ -15,6 +15,31 @@
               AND id = #{id}
     </select>
 
+    <select id="selectById" resultType="com.itdoc.mybatis.bc.entity.EmployeeEntity">
+        SELECT
+          id          AS `id`
+          , last_name AS `name`
+          , email     AS `email`
+          , gender    AS `gender`
+        FROM employee a
+        WHERE 1 = 1
+              AND id = #{id123}
+    </select>
+
+    <select id="selectByIdAndName" resultType="com.itdoc.mybatis.bc.entity.EmployeeEntity">
+        SELECT
+          id          AS `id`
+          , last_name AS `name`
+          , email     AS `email`
+          , gender    AS `gender`
+        FROM employee a
+        WHERE 1 = 1
+              AND id = #{id}
+              AND last_name = #{name}
+    </select>
+
+
+
     <insert id="insert" parameterType="com.itdoc.mybatis.bc.entity.EmployeeEntity">
         INSERT INTO employee (
           last_name

@@ -14,6 +14,7 @@ package com.itdoc.mybatis.bc.dao;
 
 import com.itdoc.mybatis.bc.entity.EmployeeEntity;
 import com.itdoc.mybatis.common.base.dao.BaseDao;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @desc 数据库模型映射接口
@@ -21,5 +22,21 @@ import com.itdoc.mybatis.common.base.dao.BaseDao;
  * @create 2018-01-30 10:15
  */
 public interface EmployeeMapper extends BaseDao<EmployeeEntity> {
+
+    /**
+     * 根据id获取对象
+     * 参数处理  单个参数
+     * @param id
+     * @return
+     */
+    EmployeeEntity selectById(String id);
+
+    /**
+     * 参数处理  多个参数
+     * @param id
+     * @param name
+     * @return
+     */
+    EmployeeEntity selectByIdAndName(@Param("id") String id, @Param("name") String name);
 
 }

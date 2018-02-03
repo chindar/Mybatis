@@ -73,7 +73,7 @@ public class EmployeeControllerTest {
             EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
             EmployeeEntity emp = new EmployeeEntity();
             emp.setName("李斯");
-            emp.setEmail("wlisi@163.com");
+            emp.setEmail("lisi@163.com");
             emp.setGender("1");
             mapper.insert(emp);
             // 若获取sqlSession时传递参数为false, 此处应该手动提交
@@ -117,6 +117,42 @@ public class EmployeeControllerTest {
             sqlSession = getSqlSession(true);
             EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
             mapper.delById("1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    /**
+     * 单参数处理
+     */
+    @Test
+    public void onlyParamTest() {
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = getSqlSession(false);
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            EmployeeEntity emp = mapper.selectById("1");
+            System.out.println(emp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    /**
+     * 多参数处理
+     */
+    @Test
+    public void multiParamTest() {
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = getSqlSession(false);
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            EmployeeEntity emp = mapper.selectByIdAndName("1", "李斯");
+            System.out.println(emp);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
