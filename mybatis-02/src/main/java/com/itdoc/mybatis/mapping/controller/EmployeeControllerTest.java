@@ -32,21 +32,25 @@ public class EmployeeControllerTest {
 
     /**
      * 获取sqlSession
+     * @param commitStatus 是否自动提交 ture: 自动 false: 手动
      * @return
      * @throws IOException
      */
-    private SqlSession getSqlSession() throws IOException {
+    private SqlSession getSqlSession(boolean commitStatus) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream input = Resources.getResourceAsStream(resource);
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(input);
-        return sessionFactory.openSession();
+        return sessionFactory.openSession(commitStatus);
     }
 
+    /**
+     * 测试查询
+     */
     @Test
     public void testSelect() {
         SqlSession sqlSession = null;
         try {
-            sqlSession = getSqlSession();
+            sqlSession = getSqlSession(false);
             EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
             EmployeeEntity emp = mapper.queryById("1");
             System.out.println(emp);
@@ -56,4 +60,73 @@ public class EmployeeControllerTest {
             sqlSession.close();
         }
     }
+
+    /**
+     * 测试新增
+     */
+    @Test
+    public void testInsert() {
+        SqlSession sqlSession = null;
+        try {
+            // 传参ture为自动提交, false为手动提交
+            sqlSession = getSqlSession(false);
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            EmployeeEntity emp = new EmployeeEntity();
+            emp.setName("李斯");
+            emp.setEmail("wlisi@163.com");
+            emp.setGender("1");
+            mapper.insert(emp);
+            // 若获取sqlSession时传递参数为false, 此处应该手动提交
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    /**
+     * 测试修改
+     */
+    @Test
+    public void testUpdate() {
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = getSqlSession(true);
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            EmployeeEntity emp = new EmployeeEntity();
+            emp.setId("3");
+            emp.setName("王二");
+            emp.setEmail("wer@163.com");
+            emp.setGender("0");
+            mapper.update(emp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    /**
+     * 测试删除
+     */
+    @Test
+    public void testDelete() {
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = getSqlSession(true);
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            mapper.delById("3");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+
+
+
+
+
 }

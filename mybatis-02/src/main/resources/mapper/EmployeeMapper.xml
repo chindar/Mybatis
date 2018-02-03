@@ -14,4 +14,34 @@
         WHERE 1 = 1
               AND id = #{id}
     </select>
+
+    <insert id="insert" parameterType="com.itdoc.mybatis.bc.entity.EmployeeEntity">
+        INSERT INTO employee (
+          last_name
+          , email
+          , gender)
+        VALUES (
+          #{name}
+          , #{email}
+          , #{gender}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.itdoc.mybatis.bc.entity.EmployeeEntity">
+        UPDATE employee
+        SET last_name = #{name}
+          , email     = #{email}
+          , gender    = #{gender}
+        WHERE 1 = 1
+              AND id = #{id}
+    </update>
+
+    <delete id="delById">
+        DELETE
+        FROM employee
+        WHERE 1 = 1
+              AND id = #{id}
+    </delete>
+
+
 </mapper>

@@ -41,13 +41,6 @@ public interface BaseDao<T> {
     boolean del(T entity);
 
     /**
-     * 根据主键更新数据
-     * @param id
-     * @return
-     */
-    boolean updateById(String id);
-
-    /**
      * 根据对象更新数据
      * @param entity
      * @return
