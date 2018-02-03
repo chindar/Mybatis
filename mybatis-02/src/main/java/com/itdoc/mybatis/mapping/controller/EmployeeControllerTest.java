@@ -95,7 +95,7 @@ public class EmployeeControllerTest {
             sqlSession = getSqlSession(true);
             EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
             EmployeeEntity emp = new EmployeeEntity();
-            emp.setId("3");
+            emp.setId("1");
             emp.setName("王二");
             emp.setEmail("wer@163.com");
             emp.setGender("0");
@@ -116,7 +116,7 @@ public class EmployeeControllerTest {
         try {
             sqlSession = getSqlSession(true);
             EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
-            mapper.delById("3");
+            mapper.delById("1");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
